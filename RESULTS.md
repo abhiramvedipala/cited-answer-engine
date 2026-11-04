@@ -8,7 +8,7 @@ Single run per setup, 150 answerable + 20 unanswerable questions, model `claude-
 | Item | Value | Command |
 |---|---|---|
 | Pages | 2,019 across 34 PDFs | `uv run python scripts/download_corpus.py` then `uv run python -m eval.report` |
-| Sources | Python 3.12 docs (32 PDFs, minus library and C API), NASA SE Handbook, NIST SP 800-53r5, 800-61r2, 800-207 | same |
+| Sources | Python 3.12 docs (30 PDFs, excluding library and C API), NASA SE Handbook, NIST SP 800-53r5, 800-61r2, 800-207 | same |
 | Chunks | 2,831 (512/64), 6,578 (256/64), 1,331 (1024/64), 2,484 (512/0) | `uv run python -m ingest.run --size N --overlap M` |
 
 ## Eval set
