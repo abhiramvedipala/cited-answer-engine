@@ -20,8 +20,10 @@ def main() -> int:
     out, bad = [], 0
     for i, line in enumerate(ROOT.joinpath("hand_questions.tsv").read_text().splitlines(), 1):
         doc, anchor, question = line.split("\t")
-        hits = find(pages, anchor, doc)
-        if not 1 <= len(hits) <= 2:  # 2 = same text legitimately repeated (e.g. appendix)
+        hits = find(
+            pages, anchor
+        )  # corpus-wide: boilerplate repeated across PDFs is all valid gold
+        if not 1 <= len(hits) <= 6 or doc not in {d for d, _ in hits}:
             print(f"line {i}: {len(hits)} pages for {anchor[:60]!r} in {doc}: {hits[:5]}")
             bad += 1
             continue

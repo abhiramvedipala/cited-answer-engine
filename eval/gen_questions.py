@@ -20,6 +20,7 @@ import pymupdf
 from dotenv import load_dotenv
 
 from answer import llm
+from eval.pages import find, load
 
 SYSTEM = """You write evaluation questions for a document search system.
 Given a section heading and the page text, write ONE specific factual question that this page
@@ -87,19 +88,20 @@ def main() -> None:
     candidates = []
     for g, share in shares.items():
         rng.shuffle(groups[g])
-        candidates.append(groups[g][: round(args.n * share) + 8])  # +8 spare for rejected ones
+        candidates.append(groups[g][: round(args.n * share) + 30])  # spares for rejected ones
     quota = {g: round(args.n * share) for g, share in shares.items()}
     got = dict.fromkeys(shares, 0)
+    pages, seen = load(), set()
 
     kept = 0
     for g, group in zip(shares, candidates, strict=True):
         for doc, page, heading, text in group:
             if got[g] >= quota[g]:
                 break
-            kept = _emit(doc, page, heading, text, kept, got, g)
+            kept = _emit(doc, page, heading, text, kept, got, g, pages, seen)
 
 
-def _emit(doc, page, heading, text, kept, got, g):
+def _emit(doc, page, heading, text, kept, got, g, pages, seen):
     """Generate and verify one question; returns the updated kept count."""
     raw, _ = llm.complete(
         SYSTEM,
@@ -114,6 +116,13 @@ def _emit(doc, page, heading, text, kept, got, g):
     if len(norm(q.get("evidence", ""))) < 20 or norm(q["evidence"]) not in norm(text):
         print(f"skip {doc}:{page} evidence not on page", file=sys.stderr)
         return kept
+    # Boilerplate (license, glossary, page headers) repeats across PDFs. Keep only evidence found
+    # on at most 2 pages in the whole corpus, and make every such page a valid gold page.
+    where = find(pages, q["evidence"])
+    if not 1 <= len(where) <= 2 or q["question"].strip().lower() in seen:
+        print(f"skip {doc}:{page} evidence on {len(where)} pages or duplicate", file=sys.stderr)
+        return kept
+    seen.add(q["question"].strip().lower())
     kept += 1
     got[g] += 1
     print(
@@ -121,7 +130,7 @@ def _emit(doc, page, heading, text, kept, got, g):
             {
                 "id": f"s{kept:03d}",
                 "question": q["question"],
-                "gold": [{"doc": doc, "page": page}],
+                "gold": [{"doc": d, "page": pg} for d, pg in where],
                 "answerable": True,
                 "source": "script",
                 "heading": heading,
