@@ -1,0 +1,20 @@
+rust	How does the Rust borrow checker decide whether a reference outlives its owner?
+kubernetes	How does the Kubernetes scheduler choose which node a new pod runs on?
+gdpr	What is the maximum fine under the GDPR for a serious data protection violation?
+hipaa	What does the HIPAA Privacy Rule say about disclosing patient records to employers?
+redis	How do I configure Redis persistence with RDB snapshots?
+terraform	How do I declare a remote state backend in Terraform?
+blockchain	How does proof-of-stake consensus select the next block validator?
+kotlin	What is the difference between a Kotlin coroutine scope and a supervisor job?
+pci dss	Which PCI DSS requirement covers the encryption of cardholder data in transit?
+starship	What is the maximum payload mass of SpaceX Starship to low Earth orbit?
+javascript	How does the JavaScript event loop schedule microtasks versus macrotasks?
+postgresql	How do I create a partial index in PostgreSQL?
+tensorflow	How do I save a trained TensorFlow model in SavedModel format?
+iso 27001	Which Annex A controls does ISO 27001 require for supplier relationships?
+webassembly	How do WebAssembly modules import functions from the host environment?
+openai	What is the context window size of the latest OpenAI GPT model?
+mars rover	How did the Perseverance rover's sample caching system get designed?
+django	How do I write a custom Django middleware class?
+docker compose	How do I limit container memory in a Docker Compose file?
+quantum	How does Shor's algorithm factor a large integer on a quantum computer?

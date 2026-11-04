@@ -1,0 +1,20 @@
+{"id": "u001", "question": "How does the Rust borrow checker decide whether a reference outlives its owner?", "gold": [], "answerable": false, "source": "hand", "check_term": "rust"}
+{"id": "u002", "question": "How does the Kubernetes scheduler choose which node a new pod runs on?", "gold": [], "answerable": false, "source": "hand", "check_term": "kubernetes"}
+{"id": "u003", "question": "What is the maximum fine under the GDPR for a serious data protection violation?", "gold": [], "answerable": false, "source": "hand", "check_term": "gdpr"}
+{"id": "u004", "question": "What does the HIPAA Privacy Rule say about disclosing patient records to employers?", "gold": [], "answerable": false, "source": "hand", "check_term": "hipaa"}
+{"id": "u005", "question": "How do I configure Redis persistence with RDB snapshots?", "gold": [], "answerable": false, "source": "hand", "check_term": "redis"}
+{"id": "u006", "question": "How do I declare a remote state backend in Terraform?", "gold": [], "answerable": false, "source": "hand", "check_term": "terraform"}
+{"id": "u007", "question": "How does proof-of-stake consensus select the next block validator?", "gold": [], "answerable": false, "source": "hand", "check_term": "blockchain"}
+{"id": "u008", "question": "What is the difference between a Kotlin coroutine scope and a supervisor job?", "gold": [], "answerable": false, "source": "hand", "check_term": "kotlin"}
+{"id": "u009", "question": "Which PCI DSS requirement covers the encryption of cardholder data in transit?", "gold": [], "answerable": false, "source": "hand", "check_term": "pci dss"}
+{"id": "u010", "question": "What is the maximum payload mass of SpaceX Starship to low Earth orbit?", "gold": [], "answerable": false, "source": "hand", "check_term": "starship"}
+{"id": "u011", "question": "How does the JavaScript event loop schedule microtasks versus macrotasks?", "gold": [], "answerable": false, "source": "hand", "check_term": "javascript"}
+{"id": "u012", "question": "How do I create a partial index in PostgreSQL?", "gold": [], "answerable": false, "source": "hand", "check_term": "postgresql"}
+{"id": "u013", "question": "How do I save a trained TensorFlow model in SavedModel format?", "gold": [], "answerable": false, "source": "hand", "check_term": "tensorflow"}
+{"id": "u014", "question": "Which Annex A controls does ISO 27001 require for supplier relationships?", "gold": [], "answerable": false, "source": "hand", "check_term": "iso 27001"}
+{"id": "u015", "question": "How do WebAssembly modules import functions from the host environment?", "gold": [], "answerable": false, "source": "hand", "check_term": "webassembly"}
+{"id": "u016", "question": "What is the context window size of the latest OpenAI GPT model?", "gold": [], "answerable": false, "source": "hand", "check_term": "openai"}
+{"id": "u017", "question": "How did the Perseverance rover's sample caching system get designed?", "gold": [], "answerable": false, "source": "hand", "check_term": "mars rover"}
+{"id": "u018", "question": "How do I write a custom Django middleware class?", "gold": [], "answerable": false, "source": "hand", "check_term": "django"}
+{"id": "u019", "question": "How do I limit container memory in a Docker Compose file?", "gold": [], "answerable": false, "source": "hand", "check_term": "docker compose"}
+{"id": "u020", "question": "How does Shor's algorithm factor a large integer on a quantum computer?", "gold": [], "answerable": false, "source": "hand", "check_term": "quantum"}

@@ -1,0 +1,68 @@
+python-whatsnew	pep 683: introduce immortal objects	Which PEP introduced immortal objects in Python 3.12, and what does it let objects do?
+python-howto-sorting	another name for this idiom is schwartzian transform	What is another name for the decorate-sort-undecorate idiom, and who popularized it among Perl programmers?
+python-tutorial	python -m venv tutorial-env	What command creates a virtual environment in a directory called tutorial-env?
+python-tutorial	caches the compiled version of each module in the __pycache__	Where does Python cache the compiled version of each imported module?
+python-faq	must begin with #! followed by the path of the python interpreter	What two things are needed to make a Python script executable on Unix?
+python-tutorial	the finally clause runs whether or not the try statement produces an exception	When does the finally clause of a try statement run?
+python-howto-enum	intflag members can be combined using the bitwise operators	How does IntFlag differ from a plain Enum with respect to bitwise operators?
+python-howto-curses	initscr() returns a window object	What does the curses initscr() function return when it succeeds?
+python-howto-urllib2	the way a browser identifies itself is through the user-agent header	Through which HTTP header does a browser identify itself, and how can a urllib request do the same?
+python-howto-ipaddress	has host bits set	What error does ipaddress.ip_network raise when given '192.0.2.1/24', and how can you avoid it?
+python-installing	python -m ensurepip --default-pip	How can pip be installed if it is missing from a Python installation?
+python-using	executed before the first prompt is displayed in interactive mode	What does the PYTHONSTARTUP environment variable do?
+python-howto-annotations	calling this function is the best practice for accessing the annotations dict	In Python 3.10 and newer, what is the best practice for accessing an object's annotations dict?
+python-howto-perf_profiling	-x perf option	How can the Linux perf profiler support be enabled from the start in Python 3.12?
+python-howto-instrumentation	the systemtap development tools must be installed	What must be installed on Linux to build CPython with embedded SystemTap markers?
+python-howto-gdb_helpers	the py-bt command attempts to display a python-level backtrace	What does the py-bt gdb command do?
+python-howto-descriptor	makes a callback to __set_name__() in loggedaccess	Why does the descriptor example call __set_name__ when the Person class is defined?
+python-howto-regex	(?=foo) is one thing (a positive lookahead assertion)	Which regex syntax is a positive lookahead assertion, and how does it differ from a non-capturing group?
+python-howto-sockets	create a new process to handle clientsocket	What options does the sockets HOWTO give for serving more than one client at a time?
+python-extending	py_incref(py_none); return py_none;	How does a C extension function return None to Python?
+python-howto-isolating-extensions	c-level data should be attached to a module object	Where should C-level data be attached to support per-module state in extension modules?
+python-howto-unicode	8-bit values are used in the encoding	In UTF-8, what does the 8 stand for?
+python-howto-unicode	the default encoding for python source code is utf-8	What is the default encoding for Python source code?
+python-howto-descriptor	data descriptors the highest priority, followed by instance variables	In what order does attribute lookup prioritize data descriptors, instance variables, non-data descriptors and class variables?
+python-howto-descriptor	descriptors that only define __get__() are called non-data descriptors	What is a non-data descriptor?
+python-howto-mro	python 2.3 uses c3	Which method resolution order algorithm has Python used since version 2.3?
+python-howto-regex	is to consume as much of the pattern as	What does it mean that a repeating regular expression like a* is greedy?
+python-howto-functional	it returns a generator object that supports the iterator protocol	What does calling a function containing a yield expression return?
+python-using	in isolated mode sys.path contains neither	What does sys.path contain in isolated mode?
+python-tutorial	list comprehensions provide a concise way to create lists	What do list comprehensions provide?
+python-howto-logging	warning:root:watch out!	What does logging.warning('watch out!') print by default?
+python-howto-argparse	the following arguments are required: echo	What happens when the argparse positional-argument example is run without an argument?
+python-reference	modules are a basic organizational unit of python code	How are modules created and what do they serve as in Python?
+python-tutorial	there is a way to remove an item from a list given its index instead of its value	How can an item be removed from a list by index, and how does that differ from pop()?
+python-tutorial	small anonymous functions can be created with the lambda keyword	How are small anonymous functions created in Python?
+python-tutorial	functions can also be called using keyword arguments of the form kwarg=value	How can functions be called with keyword arguments?
+python-tutorial	a compact way to process all or part of the elements in an iterable and return a dictionary	What is a dictionary comprehension?
+python-faq	in general, try copy.copy() or copy.deepcopy() for the general case	How do I copy an object in Python?
+python-faq	a global interpreter lock (gil) is used internally to ensure that only one thread runs in the python vm at a time	What does the global interpreter lock ensure?
+nist-sp-800-207	policy decision point (pdp) is broken down into two logical components: the policy engine and policy administrator	Into which two logical components is the policy decision point broken down?
+nist-sp-800-207	reduce the risk of an attacker gaining broad access via stolen credentials	How does a properly implemented zero trust architecture reduce risk from stolen credentials?
+nist-sp-800-207	a full zt solution will include elements of all three approaches	What three approaches can a zero trust architecture be built on, and what does a full solution include?
+nist-sp-800-207	the gateway is responsible for communicating with the policy administrator	What is the gateway responsible for in the device agent/gateway deployment?
+nist-sp-800-207	aim to restrict data and resource access to authorized parties	What do the FICAM, TIC and CDM programs have in common?
+nist-sp-800-61r2	should hold a lessons learned meeting to review the effectiveness of the incident handling process	What should an organization do after a major incident has been handled?
+nist-sp-800-61r2	incidents should be prioritized based on the relevant factors, such as the functional impact	On what factors should incidents be prioritized?
+nist-sp-800-61r2	chain of custody forms, evidence storage bags and tags, and evidence tape	Which evidence-preservation supplies should an incident handler gather?
+nist-sp-800-61r2	if an organization does not have its own csirt to contact, it can report incidents to other organizations	Where can an organization without its own CSIRT report incidents?
+nist-sp-800-61r2	infeasible to develop step-by-step instructions for handling every incident	Why does the guide not give step-by-step instructions for every incident?
+nist-sp-800-61r2	figure 3-1 illustrates the incident response life cycle	What does Figure 3-1 in the incident handling guide illustrate?
+nist-sp-800-61r2	the most challenging part of the incident response process is accurately detecting and assessing possible incidents	What is the most challenging part of the incident response process for many organizations?
+nist-sp-800-53r5	define and document the types of accounts allowed and specifically prohibited for use within the system	What does the first part of the AC-2 account management control require?
+nist-sp-800-53r5	implement subnetworks for publicly accessible system components	What does the SC-7 boundary protection control require for publicly accessible system components?
+nist-sp-800-53r5	conduct backups of user-level information contained in	What does the CP-9 system backup control require?
+nist-sp-800-53r5	monitor and scan for vulnerabilities in the system and hosted applications	What does the RA-5 control require organizations to do?
+nist-sp-800-53r5	implement an incident handling capability for incidents that is consistent with the incident response plan	What does the IR-4 incident handling control require?
+nist-sp-800-53r5	protect audit information and audit logging tools from unauthorized access, modification, and deletion	What does the AU-9 control require for audit information?
+nist-sp-800-53r5	establish and document usage restrictions, configuration/connection requirements, and implementation guidance for each type of remote access allowed	What does the AC-17 remote access control require?
+nasa-se-handbook	risk-informed decision making (ridm) and crm	Which two complementary processes make up NASA's evolved risk management approach?
+nasa-se-handbook	defining appropriate technical performance measures (tpms) by which technical progress will be assessed	How is technical progress assessed in the stakeholder expectations definition step?
+nasa-se-handbook	require trading cost for effectiveness, the decisions become harder	When do decisions in a design trade study become harder?
+nasa-se-handbook	validation is performed for the benefit of the	For whose benefit is validation performed, as opposed to verification?
+nasa-se-handbook	the four system design processes shown in figure 2.1-1 are used to define and baseline stakeholder expectations	What are the four system design processes in the systems engineering engine used for?
+nasa-se-handbook	these activities focus on preparing for the flight readiness review (frr)/mission readiness review (mrr)	What do the system assembly, integration and test activities prepare for?
+nasa-se-handbook	life cycle rough order of magnitude (rom) cost, schedule, and risk estimates	Besides high-level WBSs, what cost and schedule estimates are expected at the mission concept review?
+nasa-se-handbook	interface control documents (icds), drawings, integration plan, procedures	What design specifications and documentation are needed to perform product integration?
+nasa-se-handbook	design solution verification is in contrast to the verification of the end product	How does design solution verification differ from verification of the end product?
+nasa-se-handbook	establishing a set of measures of effectiveness (moes)	What does defining stakeholder expectations involve besides identifying stakeholders?
