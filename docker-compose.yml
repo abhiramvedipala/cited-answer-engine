@@ -11,5 +11,14 @@ services:
       test: ["CMD-SHELL", "pg_isready -U rag"]
       interval: 2s
       retries: 30
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://rag:rag@db:5432/rag
+    ports: ["8000:8000"]
 volumes:
   pgdata:
