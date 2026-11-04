@@ -115,6 +115,15 @@ def run_setup(setup: Setup, questions: list[dict], workers: int = 8) -> tuple[di
     return summarize(setup, rows), rows
 
 
+def cites_gold(r: dict) -> bool:
+    """True if any cited chunk's page span covers a gold page."""
+    return any(
+        c["doc"] == g["doc"] and c["page"] <= g["page"] <= c.get("page_end", c["page"])
+        for c in r["citations"]
+        for g in r["gold"]
+    )
+
+
 def summarize(setup: Setup, rows: list[dict]) -> dict:
     ans = [r for r in rows if r["answerable"]]
     unans = [r for r in rows if not r["answerable"]]
@@ -136,6 +145,7 @@ def summarize(setup: Setup, rows: list[dict]) -> dict:
         "refusal_accuracy": mean([float(r["refused"]) for r in unans]),
         "over_refusal": mean([float(r["refused"]) for r in ans]),
         "uncited_rate": mean([float(r["uncited"]) for r in answered]),
+        "citation_hits_gold": mean([float(cites_gold(r)) for r in answered if r["citations"]]),
         "cost_per_query_usd": mean([r["answer_cost"] for r in rows]),
         "judge_cost_total_usd": sum(r["judge_cost"] for r in rows),
         "latency_p50_s": percentile(lat, 50),
