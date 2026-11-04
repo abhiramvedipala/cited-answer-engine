@@ -33,6 +33,11 @@ class Answer:
     meta: dict = field(default_factory=dict)
 
 
+def source(h: Hit) -> str:
+    pages = str(h.page_start) if h.page_start == h.page_end else f"{h.page_start}-{h.page_end}"
+    return f"{h.doc}:{pages}"
+
+
 CITE = re.compile(r"\[(\d+)\]")
 
 
@@ -50,8 +55,9 @@ def postprocess(text: str, hits: list[Hit]) -> Answer:
             "n": n,
             "doc": hits[n - 1].doc,
             "page": hits[n - 1].page_start,
+            "page_end": hits[n - 1].page_end,
             "chunk_id": hits[n - 1].chunk_id,
-            "source": f"{hits[n - 1].doc}:{hits[n - 1].page_start}",
+            "source": source(hits[n - 1]),
         }
         for n in cited
     ]

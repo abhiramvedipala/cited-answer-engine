@@ -7,7 +7,7 @@ HITS = [Hit("c:a:0", "a", 3, 3, "alpha", 1), Hit("c:b:5", "b", 7, 8, "beta", 0.5
 
 def test_citations_map_to_doc_page():
     a = postprocess("Alpha is first [1]. Beta spans pages [2][1].", HITS)
-    assert [c["source"] for c in a.citations] == ["a:3", "b:7"]
+    assert [c["source"] for c in a.citations] == ["a:3", "b:7-8"]
     assert not a.uncited and not a.refused and a.dropped == []
 
 
@@ -39,3 +39,9 @@ def test_prompt_numbers_passages_with_source():
 def test_cost_uses_per_million_prices():
     assert abs(cost("claude-haiku-5-5", 1_000_000, 1_000_000) - 0.60) < 1e-9
     assert cost("unknown-model", 10, 10) == 0.0
+
+
+def test_citation_source_shows_page_span_for_multi_page_chunks():
+    a = postprocess("Claim [2].", HITS)
+    assert a.citations[0]["page"] == 7 and a.citations[0]["page_end"] == 8
+    assert a.citations[0]["source"] == "b:7-8"
