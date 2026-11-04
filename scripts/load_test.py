@@ -33,6 +33,8 @@ async def one(client: httpx.AsyncClient, url: str, question: str) -> dict:
                 elif line.startswith("data: "):
                     if event == "token" and first is None:
                         first = time.perf_counter() - t0
+                    elif event == "error":
+                        return {"ok": False, "status": "stream error"}
                     elif event == "done":
                         cost = json.loads(line[6:])["cost_usd"]
     except httpx.HTTPError as e:
