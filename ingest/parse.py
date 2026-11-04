@@ -15,7 +15,8 @@ class Page:
 
 def parse_pdf(path: Path) -> list[Page]:
     with pymupdf.open(path) as pdf:
-        return [Page(path.stem, i + 1, p.get_text()) for i, p in enumerate(pdf)]
+        # NUL bytes appear in some PDF text layers and Postgres text rejects them
+        return [Page(path.stem, i + 1, p.get_text().replace("\x00", "")) for i, p in enumerate(pdf)]
 
 
 def parse_dir(corpus: Path) -> list[Page]:
