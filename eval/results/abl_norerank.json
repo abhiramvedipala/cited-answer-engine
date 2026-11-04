@@ -1,0 +1,22 @@
+{
+  "setup": "abl_norerank",
+  "retriever": "hybrid",
+  "chunking": "s512_o64",
+  "rerank": false,
+  "n_answerable": 150,
+  "n_unanswerable": 20,
+  "recall@5": 0.8733333333333333,
+  "recall@10": 0.9133333333333333,
+  "mrr": 0.7383968253968254,
+  "faithfulness": 0.969910941475827,
+  "answer_relevance": 0.9003496503496503,
+  "refusal_accuracy": 1.0,
+  "over_refusal": 0.04,
+  "uncited_rate": 0.0,
+  "citation_hits_gold": 0.8472222222222222,
+  "cost_per_query_usd": 0.00046603941176470595,
+  "judge_cost_total_usd": 0.0654489,
+  "latency_p50_s": 1.034278958919458,
+  "latency_p95_s": 1.548927416958846,
+  "retrieval_p95_s": 0.04244508396368474
+}

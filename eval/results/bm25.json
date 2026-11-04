@@ -1,0 +1,22 @@
+{
+  "setup": "bm25",
+  "retriever": "bm25",
+  "chunking": "s512_o64",
+  "rerank": false,
+  "n_answerable": 150,
+  "n_unanswerable": 20,
+  "recall@5": 0.8866666666666667,
+  "recall@10": 0.94,
+  "mrr": 0.7583201058201058,
+  "faithfulness": 0.976706671828623,
+  "answer_relevance": 0.8873239436619719,
+  "refusal_accuracy": 1.0,
+  "over_refusal": 0.05333333333333334,
+  "uncited_rate": 0.0,
+  "citation_hits_gold": 0.8873239436619719,
+  "cost_per_query_usd": 0.0004649429411764706,
+  "judge_cost_total_usd": 0.0647742,
+  "latency_p50_s": 1.007435250069946,
+  "latency_p95_s": 1.6222992079136893,
+  "retrieval_p95_s": 0.005877417046576738
+}
