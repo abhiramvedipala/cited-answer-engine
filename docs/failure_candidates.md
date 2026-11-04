@@ -1,0 +1,101 @@
+# Failure candidates (hybrid_rerank)
+
+## Over-refusal (5)
+- **s029** How does the 'in' operator determine whether an item is a member of a list, tuple, or set?
+  - gold: [{'doc': 'python-reference', 'page': 100}] rank: None
+  - cited: [] faith: None
+  - answer: 'NOT_IN_CORPUS'
+- **h012** What does the PYTHONSTARTUP environment variable do?
+  - gold: [{'doc': 'python-using', 'page': 16}] rank: 7
+  - cited: [] faith: None
+  - answer: 'NOT_IN_CORPUS'
+- **h042** What three approaches can a zero trust architecture be built on, and what does a full solution include?
+  - gold: [{'doc': 'nist-sp-800-207', 'page': 20}] rank: None
+  - cited: [] faith: None
+  - answer: 'NOT_IN_CORPUS'
+- **h052** What does the first part of the AC-2 account management control require?
+  - gold: [{'doc': 'nist-sp-800-53r5', 'page': 46}] rank: None
+  - cited: [] faith: None
+  - answer: 'NOT_IN_CORPUS'
+- **h055** What does the RA-5 control require organizations to do?
+  - gold: [{'doc': 'nist-sp-800-53r5', 'page': 269}] rank: None
+  - cited: [] faith: None
+  - answer: 'NOT_IN_CORPUS'
+
+## Cited a page other than gold (10)
+- **s004** What kinds of methods make an object a descriptor?
+  - gold: [{'doc': 'python-howto-descriptor', 'page': 6}] rank: 10
+  - cited: ['python-howto-descriptor:9-10'] faith: 1.0
+  - answer: 'An object is considered a descriptor if it defines any of the descriptor protocol methods: __get__(), __set__(), or __delete__() [2]. Objects that define __set__() or __delete__() are data descriptors, while those that only define __get__() are non-data descriptors [2].'
+- **s014** Which pages of the Python 3.12 setup and usage guide mention the PYTHONPATH environment variable?
+  - gold: [{'doc': 'python-using', 'page': 105}, {'doc': 'python-using', 'page': 107}] rank: None
+  - cited: ['python-using:48-49', 'python-using:49-50', 'python-using:60-61', 'python-using:1-3', 'python-using:12-13'] faith: 0.25
+  - answer: 'The PYTHONPATH variable is mentioned on page 48 and page 49 of the Python Setup and Usage guide, in the Windows configuration section [1][2]. Page 60 also mentions PYTHONPATH in the context of macOS environment configuration [5]. Page 12 and page 1 do not mention it in the passages provided [3][4].'
+- **s015** What is an abstract base class in Python?
+  - gold: [{'doc': 'python-extending', 'page': 107}] rank: None
+  - cited: ['python-tutorial:121-122', 'python-reference:161-162', 'python-extending:69-70', 'python-faq:81-82', 'python-using:65-66'] faith: 1.0
+  - answer: "An abstract base class complements duck-typing by providing a way to define interfaces when techniques like hasattr() would be clumsy or subtly wrong, for example with magic methods [1][2][3][4][5]. ABCs introduce virtual subclasses, which are classes that don't inherit from a class but are still re"
+- **s070** Which control enhancement under SC-7 requires that the system fail to a secure state when a failure is recognized?
+  - gold: [{'doc': 'nist-sp-800-53r5', 'page': 485}] rank: None
+  - cited: ['nist-sp-800-53r5:329'] faith: 0.5
+  - answer: 'The passages describe boundary protection enhancement (18), "Fail Secure," which prevents systems from entering unsecure states in the event of an operational failure of a boundary protection device [1]. However, the passages do not explicitly state that this enhancement is under SC-7 as a formal co'
+- **s081** Which organizations and NIST publications are recommended as resources for establishing and maintaining an incident response capability?
+  - gold: [{'doc': 'nist-sp-800-61r2', 'page': 73}] rank: 6
+  - cited: ['nist-sp-800-61r2:11-12', 'nist-sp-800-61r2:10-11', 'nist-sp-800-53r5:185-186', 'nist-sp-800-61r2:33-34'] faith: 1.0
+  - answer: 'The passages recommend establishing relationships and lines of communication with internal groups such as the legal department and external groups such as law enforcement agencies [1]. Federal civilian agencies must designate a primary and secondary point of contact with US-CERT [1][3]. Organization'
+- **s091** Does NIST's guidance on information security standards apply to national security systems?
+  - gold: [{'doc': 'nist-sp-800-207', 'page': 3}, {'doc': 'nist-sp-800-61r2', 'page': 5}] rank: 1
+  - cited: ['nist-sp-800-53r5:1-3'] faith: None
+  - answer: "No. NIST's standards and guidelines are not to apply to national security systems without the express approval of the appropriate federal officials exercising policy authority over such systems [2]. The FISMA authority described for NIST covers minimum requirements for federal information systems [2"
+- **h001** Which PEP introduced immortal objects in Python 3.12, and what does it let objects do?
+  - gold: [{'doc': 'python-whatsnew', 'page': 32}] rank: None
+  - cited: ['python-tutorial:127-128', 'python-faq:87-88'] faith: 1.0
+  - answer: 'Immortal objects were introduced by PEP 683 [1][2]. If an object is immortal, its reference count is never modified, so it is never deallocated while the interpreter is running [1][2].'
+- **h011** How can pip be installed if it is missing from a Python installation?
+  - gold: [{'doc': 'python-installing', 'page': 13}] rank: 3
+  - cited: ['python-using:45-46'] faith: 1.0
+  - answer: 'One potential fix is to run `python -m ensurepip --default-pip` [4]. There are also additional resources for installing pip [4]. Pip may not get installed by default in some installations [4].'
+- **h023** What is the default encoding for Python source code?
+  - gold: [{'doc': 'python-howto-unicode', 'page': 4}] rank: None
+  - cited: ['python-using:50-51', 'python-tutorial:12'] faith: 1.0
+  - answer: 'By default, Python source files are treated as encoded in UTF-8. [2][3]'
+- **h024** In what order does attribute lookup prioritize data descriptors, instance variables, non-data descriptors and class variables?
+  - gold: [{'doc': 'python-howto-descriptor', 'page': 10}] rank: 8
+  - cited: ['python-reference:49-50', 'python-howto-descriptor:6-7'] faith: 0.75
+  - answer: 'The passages do not explicitly state the full priority order of data descriptors, instance variables, non-data descriptors, and class variables. They do say that non-data descriptors can be overridden by instances [1], and that a property (a data descriptor) cannot be overridden by instances [1]. De'
+
+## Lowest faithfulness (8)
+- **s014** Which pages of the Python 3.12 setup and usage guide mention the PYTHONPATH environment variable?
+  - gold: [{'doc': 'python-using', 'page': 105}, {'doc': 'python-using', 'page': 107}] rank: None
+  - cited: ['python-using:48-49', 'python-using:49-50', 'python-using:60-61', 'python-using:1-3', 'python-using:12-13'] faith: 0.25
+  - answer: 'The PYTHONPATH variable is mentioned on page 48 and page 49 of the Python Setup and Usage guide, in the Windows configuration section [1][2]. Page 60 also mentions PYTHONPATH in the context of macOS environment configuration [5]. Page 12 and page 1 do not mention it in the passages provided [3][4].'
+- **s070** Which control enhancement under SC-7 requires that the system fail to a secure state when a failure is recognized?
+  - gold: [{'doc': 'nist-sp-800-53r5', 'page': 485}] rank: None
+  - cited: ['nist-sp-800-53r5:329'] faith: 0.5
+  - answer: 'The passages describe boundary protection enhancement (18), "Fail Secure," which prevents systems from entering unsecure states in the event of an operational failure of a boundary protection device [1]. However, the passages do not explicitly state that this enhancement is under SC-7 as a formal co'
+- **s022** What happens to the value of an expression statement in interactive mode?
+  - gold: [{'doc': 'python-reference', 'page': 105}] rank: 1
+  - cited: ['python-reference:103-105'] faith: 0.6666666666666666
+  - answer: 'In interactive mode, if the value of an expression statement is not None, it is converted to a string using the built-in repr() function and written to standard output on a line by itself [1]. If the result is None, nothing is printed, so procedure calls produce no output [1].'
+- **s041** What does the logger output when I run the stop command with multiple service names, and what log level does it use by default?
+  - gold: [{'doc': 'python-howto-logging-cookbook', 'page': 57}] rank: 1
+  - cited: ['python-howto-logging-cookbook:57-58', 'python-howto-logging-cookbook:55-56', 'python-howto-logging-cookbook:56-57'] faith: 0.6666666666666666
+  - answer: 'By default the logger outputs "INFO stop Stopped the \'foo\' and \'bar\' services." when running the stop command with multiple names [1]. The default log level is INFO [2][3].'
+- **h032** What happens when the argparse positional-argument example is run without an argument?
+  - gold: [{'doc': 'python-howto-argparse', 'page': 3}] rank: 2
+  - cited: ['python-howto-argparse:2-3'] faith: 0.6666666666666666
+  - answer: 'Running the script without any positional argument produces an error: "the following arguments are required: echo" [2]. The usage line is shown along with the error message [2].'
+- **h060** How is technical progress assessed in the stakeholder expectations definition step?
+  - gold: [{'doc': 'nasa-se-handbook', 'page': 24}] rank: 9
+  - cited: ['nasa-se-handbook:64-66', 'nasa-se-handbook:141-142'] faith: 0.6666666666666666
+  - answer: 'The passages do not describe how technical progress is assessed in the stakeholder expectations definition step. Passage [1] mentions measures stakeholders deem necessary for project success, but not how progress is assessed. Passage [2] references technical assessment only in relation to requiremen'
+- **h024** In what order does attribute lookup prioritize data descriptors, instance variables, non-data descriptors and class variables?
+  - gold: [{'doc': 'python-howto-descriptor', 'page': 10}] rank: 8
+  - cited: ['python-reference:49-50', 'python-howto-descriptor:6-7'] faith: 0.75
+  - answer: 'The passages do not explicitly state the full priority order of data descriptors, instance variables, non-data descriptors, and class variables. They do say that non-data descriptors can be overridden by instances [1], and that a property (a data descriptor) cannot be overridden by instances [1]. De'
+- **h034** How can an item be removed from a list by index, and how does that differ from pop()?
+  - gold: [{'doc': 'python-tutorial', 'page': 43}] rank: 2
+  - cited: ['python-tutorial:43-44', 'python-tutorial:39-40'] faith: 0.75
+  - answer: 'The del statement removes an item from a list given its index, such as `del a` [2]. It differs from pop(), which removes the item at a given position and returns that value [1][2].'
+
+## Answered an unanswerable (0)
