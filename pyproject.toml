@@ -30,4 +30,5 @@ target-version = "py312"
 select = ["E", "F", "I", "B", "UP"]
 
 [tool.pytest.ini_options]
+testpaths = ["tests"]
 markers = ["integration: needs Postgres and local models"]
