@@ -32,3 +32,13 @@ select = ["E", "F", "I", "B", "UP"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = ["integration: needs Postgres and local models"]
+
+# Linux (the Docker image) gets CPU-only torch: PyPI's Linux wheel bundles multi-GB CUDA libraries
+# the service never uses. macOS wheels from PyPI are already CPU/MPS.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
