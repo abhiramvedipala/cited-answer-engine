@@ -44,7 +44,7 @@ def default_retriever():
     config = f"s{os.getenv('CHUNK_SIZE', '512')}_o{os.getenv('CHUNK_OVERLAP', '64')}"
     # ponytail: one shared connection; psycopg serializes access. Use a pool if the
     # dense query ever becomes the bottleneck (the cross-encoder dominates today).
-    r = get_retriever("hybrid", connect(), config, rerank=True)
+    r = get_retriever("hybrid", connect(), config, rerank=os.getenv("RERANK", "1") == "1")
     r.search("warm up", 1)
     return r
 

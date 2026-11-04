@@ -20,6 +20,8 @@ services:
     environment:
       DATABASE_URL: postgresql://rag:rag@db:5432/rag
       RATE_LIMIT: ${RATE_LIMIT:-30/minute}
+      # Off by default: CPU torch in the Docker VM made the cross-encoder 17x slower p95 (see RESULTS.md)
+      RERANK: ${RERANK:-0}
       ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-haiku-5-5}
       ANTHROPIC_API_KEY: # passed through from the host shell, never stored in a file
     ports: ["8000:8000"]
