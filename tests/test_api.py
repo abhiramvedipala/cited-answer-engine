@@ -62,3 +62,16 @@ def test_rate_limit_returns_429_after_limit(tmp_path, monkeypatch):
     with client(rate_limit="2/minute") as c:
         codes = [c.post("/ask", json={"question": "valid question"}).status_code for _ in range(3)]
     assert codes == [200, 200, 429]
+
+
+def test_failure_mid_stream_is_reported_as_error_event(tmp_path, monkeypatch):
+    monkeypatch.setattr("service.api.REQUEST_LOG", tmp_path / "req.jsonl")
+
+    def broken(question, hits):
+        yield "partial "
+        raise RuntimeError("upstream down")
+
+    with TestClient(create_app(FakeRetriever(), broken)) as c:
+        r = c.post("/ask", json={"question": "valid question"})
+    assert [e for e, _ in parse(r.text)] == ["token", "error"]
+    assert parse(r.text)[-1][1] == {"error": "RuntimeError"}

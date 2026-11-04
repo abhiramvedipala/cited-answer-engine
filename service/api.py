@@ -6,6 +6,7 @@ Each request appends one JSON line to logs/requests.jsonl (ip, latency, cost, re
 """
 
 import json
+import logging
 import os
 import time
 from collections.abc import Callable, Iterator
@@ -23,6 +24,7 @@ from slowapi.util import get_remote_address
 
 from answer.answer import Answer, answer_stream
 
+log = logging.getLogger("service")
 REQUEST_LOG = Path(os.getenv("REQUEST_LOG", "logs/requests.jsonl"))
 TOP_K = 5
 
@@ -76,13 +78,19 @@ def create_app(
 
         def events() -> Iterator[str]:
             t0 = time.perf_counter()
-            hits = app.state.retriever.search(body.question, TOP_K)
             final: Answer | None = None
-            for x in stream_fn(body.question, hits):
-                if isinstance(x, Answer):
-                    final = x
-                else:
-                    yield sse("token", {"t": x})
+            try:
+                hits = app.state.retriever.search(body.question, TOP_K)
+                for x in stream_fn(body.question, hits):
+                    if isinstance(x, Answer):
+                        final = x
+                    else:
+                        yield sse("token", {"t": x})
+            except Exception as e:
+                # The 200 header is already sent, so a failure has to travel in the stream.
+                log.exception("ask failed")
+                yield sse("error", {"error": type(e).__name__})
+                return
             assert final is not None
             yield sse(
                 "citations",
