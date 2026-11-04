@@ -1,0 +1,87 @@
+event: token
+data: {"t": "A data descriptor is an"}
+
+event: token
+data: {"t": " object that defines __set__()"}
+
+event: token
+data: {"t": " or __delete__(), while"}
+
+event: token
+data: {"t": " a non-data descriptor"}
+
+event: token
+data: {"t": " only defines __get__() ["}
+
+event: token
+data: {"t": "1]. If"}
+
+event: token
+data: {"t": " an instance's dictionary"}
+
+event: token
+data: {"t": " has an entry with the same name"}
+
+event: token
+data: {"t": " as a data descriptor,"}
+
+event: token
+data: {"t": " the data descriptor takes"}
+
+event: token
+data: {"t": " precedence,"}
+
+event: token
+data: {"t": " wh"}
+
+event: token
+data: {"t": "ereas a"}
+
+event: token
+data: {"t": " dictionary entry tak"}
+
+event: token
+data: {"t": "es precedence over a non-"}
+
+event: token
+data: {"t": "data descriptor [1]"}
+
+event: token
+data: {"t": ". Python"}
+
+event: token
+data: {"t": " methods are implemented as non"}
+
+event: token
+data: {"t": "-data descriptors, so"}
+
+event: token
+data: {"t": " instances can override"}
+
+event: token
+data: {"t": " them,"}
+
+event: token
+data: {"t": " while the property() function is a"}
+
+event: token
+data: {"t": " data descriptor, so inst"}
+
+event: token
+data: {"t": "ances cannot override a"}
+
+event: token
+data: {"t": " property ["}
+
+event: token
+data: {"t": "2]["}
+
+event: token
+data: {"t": "3]."}
+
+event: citations
+data: {"answer": "A data descriptor is an object that defines __set__() or __delete__(), while a non-data descriptor only defines __get__() [1]. If an instance's dictionary has an entry with the same name as a data descriptor, the data descriptor takes precedence, whereas a dictionary entry takes precedence over a non-data descriptor [1]. Python methods are implemented as non-data descriptors, so instances can override them, while the property() function is a data descriptor, so instances cannot override a property [2][3].", "refused": false, "uncited": false, "citations": [{"n": 1, "doc": "python-howto-descriptor", "page": 9, "page_end": 10, "chunk_id": "s512_o64:python-howto-descriptor:12", "source": "python-howto-descriptor:9-10"}, {"n": 2, "doc": "python-reference", "page": 49, "page_end": 50, "chunk_id": "s512_o64:python-reference:83", "source": "python-reference:49-50"}, {"n": 3, "doc": "python-reference", "page": 49, "page_end": 49, "chunk_id": "s512_o64:python-reference:82", "source": "python-reference:49"}]}
+
+event: done
+data: {"latency_s": 2.554, "cost_usd": 0.00043270000000000006}
+

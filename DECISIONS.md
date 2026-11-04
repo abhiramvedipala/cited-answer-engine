@@ -57,7 +57,31 @@ Each entry: what I chose, what I rejected, and why.
   its own. End-to-end latency = retrieval + that call. Judge calls are excluded from latency and
   per-query cost; their total is reported separately.
 
-## Repository workflow
-- PROMPT.md was updated mid-build to ask for phase branches, PRs and a GitHub repo created by
-  the assistant. I kept building on `main` locally and did not create or push a remote, because
-  that is outward-facing and was not asked for in chat. See PROGRESS.md.
+## Gold labels: every page that holds the evidence counts
+- The first full eval run undercounted recall: 22 of 150 questions had evidence repeated on other
+  pages (the Python license and glossary appear in every PDF, one header string on 492 pages) and
+  two questions were identical. I discarded that run, required script-question evidence to appear
+  on at most 2 corpus pages (all of them gold), rejected duplicate text, and re-ran everything.
+- Hand questions take gold from a corpus-wide anchor search for the same reason.
+
+## Citations show the chunk's page span
+- A chunk can cross a page break, so citing only its first page pointed readers at the wrong page.
+  Citations carry `page_end` and print as `doc:38-39`. "Cites gold" counts a hit when a cited
+  chunk's span covers a gold page.
+
+## Service: rerank is off by default in Docker, on by default in code
+- At 20 concurrent users in the Docker VM (4 CPUs, CPU torch) the cross-encoder gave p95 29.9s at
+  0.78 req/s; without it p95 was 3.4s at 10 req/s. Natively on macOS it was p95 4.8s. A lock around
+  inference did not help (27.9s without, 29.9s with), so I removed it.
+- The eval shows rerank adds 0.036 MRR and no measurable recall@5 gain on this corpus, so the
+  trade is poor for a CPU deployment. `RERANK=1` turns it on.
+- Mid-stream failures are sent as an SSE `error` event, because the 200 header is already out.
+
+## Docker image: CPU-only torch on Linux
+- PyPI's Linux torch pulls CUDA and 3.3 GB of nvidia libraries (10.8 GB image). Pointing Linux at
+  the PyTorch CPU index gives 2.9 GB. torch must be a direct dependency for `[tool.uv.sources]`
+  to apply; my first attempt did nothing because it was only transitive.
+
+## Repository
+- The code is committed locally on `main`. No remote has been created or pushed to yet; see
+  PROGRESS.md.
