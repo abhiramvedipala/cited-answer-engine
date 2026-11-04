@@ -19,6 +19,7 @@ services:
     env_file: .env
     environment:
       DATABASE_URL: postgresql://rag:rag@db:5432/rag
+      RATE_LIMIT: ${RATE_LIMIT:-30/minute}
     ports: ["8000:8000"]
 volumes:
   pgdata:
