@@ -40,7 +40,8 @@ def ci95(p: float, n: int) -> float:
 def table(results: dict, names: list[str]) -> str:
     head = (
         "| Setup | Chunk/overlap | Rerank | recall@5 (±95% CI) | recall@10 | MRR | Faithfulness "
-        "| Relevance | Cites gold | Refusal acc. (20) | Over-refusal | $/query | p50 s | p95 s | retrieval p95 s |\n"
+        "| Relevance | Cites gold | Refusal acc. (20) | Over-refusal | $/query | p50 s | p95 s "
+        "| retrieval p95 s |\n"
         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n"
     )
     rows = []
