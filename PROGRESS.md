@@ -10,9 +10,8 @@
 `scripts/check.sh` passes: lint, 36 tests, eval-set integrity.
 
 ## Needs you
-1. **Remote repository.** Nothing has been created on GitHub or pushed. The README CI badge points at
-   `github.com/abhiramvedipala/cited-answer-engine`. When you want it: `gh repo create
-   abhiramvedipala/cited-answer-engine --private --source=. --remote=origin`, then push `main`.
+1. **Remote repository.** Done: `main` is pushed to `github.com/abhiramvedipala/cited-answer-engine`
+   (public) and the first CI run passed (run 41914809105, 2026-11-04).
 2. **Review a sample of the 68 hand-written questions** in `eval/hand_questions.tsv`.
 3. **Update the resume** to the measured numbers in RESULTS.md (recall@5 is 0.887, not a target).
 4. **Docker disk.** The Docker VM was nearly full while building (other projects' images).
