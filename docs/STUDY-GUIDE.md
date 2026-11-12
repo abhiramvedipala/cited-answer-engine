@@ -29,11 +29,11 @@ Three measured results worth quoting, copied from `RESULTS.md`:
 2. **Chunk.** `ingest/chunk.py`, `chunk_doc` / `chunk_pages`: fixed token windows (default 512 with 64 overlap) that may cross a page break inside one document, so each `Chunk` stores `page_start` and `page_end`. Token offsets come from the embedding model's own tokenizer (`hf_offsets` in `ingest/embed.py`).
 3. **Embed and store.** `ingest/embed.py` `embed_passages` (bge-small, 384 dims) and `ingest/run.py` `ingest()`: rows go into one `chunks` table (schema in `ingest/db.py`, `init_schema`) keyed by a `config` column. Ids are `config:doc:idx`, existing ids are skipped, so a re-run adds nothing.
 4. **Retrieve.** `retrieval/retrievers.py`: `Dense` (pgvector cosine) and `BM25` (rank_bm25, in memory) are fused by `rrf` (reciprocal rank fusion, k=60) inside `Hybrid`. `Reranked` optionally re-scores the top 20 with the cross-encoder. `get_retriever` builds the chosen combination; every retriever exposes `search(query, k)` and returns `Hit`s.
-5. **Answer, check, stream.** `answer/answer.py`: `answer_stream` sends the top 5 chunks as numbered passages (`build_prompt`) through `answer/llm.py` `stream`; `postprocess` maps `[n]` to `doc:page`, drops numbers outside the retrieved set, flags answers with no valid citation, and detects the `NOT_IN_CORPUS` sentinel. `service/api.py` `create_app` / `ask` streams this as SSE events `token`, `citations`, `done` (or `error`).
+5. **Answer, check, stream.** `answer/answer.py`: the service retrieves the top 5 chunks (`TOP_K` in `service/api.py`) and `answer_stream` sends them as numbered passages (`build_prompt`) through `answer/llm.py` `stream`; `postprocess` maps `[n]` to `doc:page`, drops numbers outside the retrieved set, flags answers with no valid citation, and detects the `NOT_IN_CORPUS` sentinel. `service/api.py` `create_app` / `ask` streams this as SSE events `token`, `citations`, `done` (or `error`).
 
 ## Read the history in this order
 
-The whole project was built directly on `main`: 53 commits, all dated 2026-11-04 except the last two. Only one pull request has been merged (#1, a docs change), so I group the commits into phases by reading the log. The phases follow `PROGRESS.md`, with the fix commits that came out of running things kept in their own rows. Ranges are first and last short hash in log order (oldest first).
+The whole project was built directly on `main`: 53 commits, all dated 2026-11-04 except the last two. Only one pull request has been merged (#1, a docs change), so I group the commits into phases by reading the log. Phases 1 to 5 follow `PROGRESS.md`; the later groups are my own, as in `CHANGELOG.md`, with the fix commits that came out of running things kept in their own rows. Ranges are first and last short hash in log order (oldest first).
 
 | order | pull request or phase | commit range | what was built | what to notice |
 |---|---|---|---|---|
@@ -43,7 +43,7 @@ The whole project was built directly on `main`: 53 commits, all dated 2026-11-04
 | 4 | Phase 4: evaluation | `23e391b`..`f8e2365` (9 commits) | NUL-byte fix, question generator with verified evidence, page cache and phrase locator, 68 hand + 20 unanswerable questions, final 170-question set, metrics, LLM judge, runner, `DECISIONS.md` | Gold labels are checked by phrase search, not memory; judge is a small prompt pair instead of Ragas |
 | 5 | Phase 5: service and Docker | `c987320`..`c695ea7` (6 commits) | pytest collection fix, `/ask` SSE endpoint with rate limit, API tests, `scripts/check.sh`, asyncio load test, Dockerfile and compose | App factory takes an injected retriever and stream function, so API tests need no database or key |
 | 6 | Fix and measure | `47f5929`..`8422b38` (14 commits) | Page-span citations, corrected gold labels, "cites gold" metric, CPU-only torch, report/chart, CI, SSE error event, load-test and key-forwarding fixes, raw eval results for all seven setups | Most of the real learning: the gold-label bug, the torch CUDA image, and the 200-with-broken-stream bug were all found by running, not by reading |
-| 7 | Rerank switch and written docs | `5ed5a9e`..`8289dfe` (6 commits) | `RERANK` switch (off in Docker), `RESULTS.md`, README, `docs/INTERVIEW-NOTES.md`, `PROGRESS.md` | A measured trade-off drove a default: rerank cost 8x throughput in Docker for no recall gain |
+| 7 | Rerank switch and written docs | `5ed5a9e`..`8289dfe` (6 commits) | `RERANK` switch (off in Docker), `RESULTS.md`, README, `docs/INTERVIEW-NOTES.md`, `PROGRESS.md` | A measured trade-off drove a default: rerank cut Docker throughput from 10.0 to 0.78 req/s (about 13x) and p95 went from 3.55 s to 29.9 s, for no recall gain |
 | 8 | Pull request #1: "docs(progress): mark the GitHub push as done" | `572399b`, merge `1f499b4` (2026-11-11) | `PROGRESS.md` now records that `main` is pushed and CI passed | The only merged PR; a small docs change (2 insertions, 3 deletions) |
 
 ## The 10 commits that matter most
@@ -90,7 +90,7 @@ The whole project was built directly on `main`: 53 commits, all dated 2026-11-04
 
 ## Numbers to remember
 
-All from `RESULTS.md`; single run per setup, 150 answerable + 20 unanswerable questions, model `claude-haiku-5-5`. Re-run with `uv run python -m eval.run --config all` then `uv run python -m eval.report`.
+All from `RESULTS.md` except the last row; single run per setup, 150 answerable + 20 unanswerable questions, model `claude-haiku-5-5`. Re-run with `uv run python -m eval.run --config all` then `uv run python -m eval.report`.
 
 | Number | What it is | How it was measured |
 |---|---|---|

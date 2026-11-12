@@ -7,7 +7,7 @@ The project was built directly on `main` in seven stages, all on 2026-11-04, and
 Commits `d287f01`..`54892ea`.
 
 - Scaffold: `.gitignore` and `.env.example`, `pyproject.toml` (Python 3.12, uv), and a docker-compose file for pgvector Postgres 16 on port 5433.
-- Corpus download script with pinned sha256 checksums for the Python 3.12 docs and four public-domain US government PDFs; `library.pdf` and `c-api.pdf` excluded.
+- Corpus download script with pinned sha256 checksums for the Python 3.12 docs and four US government PDFs (NASA SE Handbook, NIST SP 800-53r5, 800-61r2, 800-207); `library.pdf` and `c-api.pdf` excluded.
 - PyMuPDF parser giving one record per page with 1-based page numbers.
 - Page-aware token-window chunker that records `page_start` and `page_end`, with edge-case tests.
 - Local `bge-small-en-v1.5` embeddings, a pgvector `chunks` table keyed by a `config` column, and an idempotent `ingest.run` CLI.
