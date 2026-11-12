@@ -134,4 +134,5 @@ service/     FastAPI app: /ask (SSE), /health, rate limit, request log
 scripts/     download_corpus.py (checksummed), load_test.py, check.sh
 tests/       36 tests
 docs/        chart, results tables, demo transcript, interview notes
+docs/STUDY-GUIDE.md  reading order for the history, key commits and files, numbers to remember
 ```
